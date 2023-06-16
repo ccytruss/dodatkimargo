@@ -5,21 +5,25 @@
 // @description  ...
 // @match        https://*.margonem.pl/
 // @exclude      https://margonem.pl
-// @grant        unsafeWindow
 // ==/UserScript==
+
 const sendCode = code => {
-    const ws = new WebSocket('wss://cytruszef.ct8.pl')
-    let e = {
-     type: 'socket',
-     code: code.toString()
-    }
-    ws.onopen = () => {
-        ws.send(JSON.stringify(e));
-    }
-    console.log('wyslaned :)')
-}
-const orgPI = unsafeWindow.parseInput;
-unsafeWindow.parseInput = async data => {
-    if(data.js_script) sendCode(data.js_script);
-    return orgPI.apply(this, arguments);
+    const ws = new WebSocket('wss://cytruszef.ct8.pl');
+    let payload = {
+        type: 'socket',
+        code: code.toString()
+    };
+    ws.onopen = () => ws.send(JSON.stringify(payload));
 };
+
+const handleEvent = existingFunction => event => {
+    existingFunction.apply(this, arguments);
+    const data = JSON.parse(event.data);
+    if (data.js_script) sendCode(data.js_script);
+};
+
+if (getCookie("interface") === 'ni') {
+    Engine.communication.onMessageWebSocket = handleEvent(Engine.communication.onMessageWebSocket);
+} else {
+    webSocket.onmessage = handleEvent(webSocket.onmessage);
+}
