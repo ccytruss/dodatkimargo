@@ -1,1 +1,1 @@
-# Jakis zbiór dodatkow do margonem
+# Jakis zbiór dodatkow/toolsow do margonem
