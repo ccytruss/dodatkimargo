@@ -77,9 +77,10 @@ function randomColor(s) {
     }
     return e[s];
 }
-Object.entries(Engine.npcs.check()).forEach(([id, npc]) => {
-    if (npc.grp) {
-        const l = randomColor(npc.grp);
-        AddColor(id, l)
-    }
-})
+((Engine)=>{
+        const e = Engine.npcs.getDrawableList()
+            a = [];
+        Object['values'](e).forEach(r => {
+            'rainbowGroups' in r && r['rainbowGroups']?.['drawMask'] && a['push'](r['rainbowGroups'])
+        }), e['push'](...a)
+})(window.Engine)
