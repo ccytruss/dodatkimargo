@@ -61,6 +61,7 @@ class CreateColor {
             this.drawMask = canvas;
         }
     }
+
     updateColor(t) {
         this.color = t;
         this.createDrawMask();
@@ -88,9 +89,10 @@ function randomColor(s) {
     return e[s];
 }
 ((Engine)=>{
-        const e = Engine.npcs.getDrawableList(),
-            a = [];
-        Object.values(e).forEach(r => {
-            'rainbowGroups' in r && r.rainbowGroups?.drawMask && a.push(r.rainbowGroups)
-        }), e.push(...a)
+Object.entries(Engine.npcs.check()).forEach(([id, npc]) => {
+    if (npc.grp) {
+        const l = randomColor(npc.grp);
+        AddColor(id, l)
+    }
+})
 })(window.Engine)
