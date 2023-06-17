@@ -1,3 +1,13 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://experimental.margonem.pl/
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=margonem.pl
+// @grant        none
+// ==/UserScript==
 // nie dzialaja z jakiegos powodu
 let xds,xdds;
 class CreateColor {
@@ -9,9 +19,9 @@ class CreateColor {
         this.fh = 0
         this[xds] = undefined
         this[xdds] = undefined
-        this.master = master,
-        this.color = color,
-        this.createDrawMask(),
+        this.master = master
+        this.color = color
+        this.createDrawMask()
         this.update()
     }[(xds = 'mask', xdds = 'drawMask', 'getOrder')](){
         return this.master.ry + .1
@@ -78,9 +88,9 @@ function randomColor(s) {
     return e[s];
 }
 ((Engine)=>{
-        const e = Engine.npcs.getDrawableList()
+        const e = Engine.npcs.getDrawableList(),
             a = [];
-        Object['values'](e).forEach(r => {
-            'rainbowGroups' in r && r['rainbowGroups']?.['drawMask'] && a['push'](r['rainbowGroups'])
-        }), e['push'](...a)
+        Object.values(e).forEach(r => {
+            'rainbowGroups' in r && r.rainbowGroups?.drawMask && a.push(r.rainbowGroups)
+        }), e.push(...a)
 })(window.Engine)
