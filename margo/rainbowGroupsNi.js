@@ -4,8 +4,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        https://experimental.margonem.pl/
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=margonem.pl
+// @match        https://*.margonem.pl/
 // @grant        none
 // ==/UserScript==
 // nie dzialaja z jakiegos powodu
