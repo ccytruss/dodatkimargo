@@ -42,5 +42,11 @@ class Emitter {
             return originalFunction.apply(originalContext, args);
         };
     }
+     after(event, listener) {
+        const callback = (...args) => {
+            setTimeout(() => listener.apply(this, args), 0);
+        };
+        this.on(event, callback);
+    }
 }
 const emitter = new Emitter();
